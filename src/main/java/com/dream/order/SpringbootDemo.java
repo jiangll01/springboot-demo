@@ -16,6 +16,5 @@ import org.springframework.context.annotation.Import;
 public class SpringbootDemo {
     public static void main(String[] args) {
         SpringApplication.run(SpringbootDemo.class,args);
-        String s = "我要联系会退的版本，你信嘛？";
     }
 }
