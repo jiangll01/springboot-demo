@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Import;
  * @Description:
  */
 @SpringBootApplication
-
 public class SpringbootDemo {
     public static void main(String[] args) {
         SpringApplication.run(SpringbootDemo.class,args);
