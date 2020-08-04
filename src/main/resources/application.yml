@@ -7,6 +7,17 @@ server:
 spring:
   profiles:
     active: dev
+person:
+  name: zhangsan
+  age: 18
+  sex: 男
+  map:
+    classs: 5
+    love: liuyujiao
+  annimals:
+    - cat
+    - dog
+    - ping
 
 
 
