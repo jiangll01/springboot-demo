@@ -1,0 +1,50 @@
+debug: true
+server:
+  port: 8081
+  # 配置项目的访问路径
+  servlet:
+    context-path: /boot02
+spring:
+  profiles:
+    active: dev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+server:
+  port: 8082
+spring:
+  profiles: dev
+---
+server:
+  port: 8083
+spring:
+  profiles: prod
+
+
+person:
+  name: jiangll${random.uuid}
+  age: 18${random.int}
+  sex: 男
+  map:
+    classs: 5
+    love: ${person.sex}liuyujiao
+  annimals:
+    - ${person.name}cat
+    - dog
+    - ping
+producter:
+  real:
+    false
+
