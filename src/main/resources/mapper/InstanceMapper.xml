@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.order.manage.instance.mapper.InstanceMapper">
+
+    <cache-ref namespace="com.dream.order.manage.timezone.mapper.TimeMapper"/>
+    <select id="selectAll" resultType="com.dream.order.manage.timezone.bean.TimeBean">
+        select * from time_insatnce t1,timetest t2  where t1.name = t2.time_name
+    </select>
+</mapper>

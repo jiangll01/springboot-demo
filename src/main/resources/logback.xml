@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--首先需要导入这个配置文件-->
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <!--追加，日志打印的位置和文件名-->
+    <appender name="auditlog"
+              class="ch.qos.logback.core.FileAppender">
+        <File>a.log</File>
+
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <!--日志的布局-->
+            <!-- 记录日志的编码 -->
+            <charset>UTF-8</charset> <!-- 此处设置字符集 -->
+        </encoder>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--控制台打印日志的格式-->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level --- [%15thread{15}] %-40logger{40} : %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--设置包的日志级别-->
+    <logger name="org" level="INFO"/>
+    <logger name="sun" level="INFO"/>
+    <logger name="com.dream.order" level="INFO"/>
+    <logger name="com.dream.order.manage" level="DEBUG"/>
+
+    <!--根日志打印到控制台-->
+    <root level="INFO">
+    </root>
+</configuration>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--mybatis属性配置-->
+    <settings>
+        <setting name="callSettersOnNulls" value="true"/>
+        <!--全局性地开启或关闭所有映射器配置文件中已配置的任何缓存。-->
+        <setting name="cacheEnabled" value="true"/>
+        <!--是否开启驼峰命名自动映射-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <!--对映射的类起别名-->
+    <typeAliases>
+
+    </typeAliases>
+
+    <plugins>
+        <plugin interceptor="com.dream.order.common.page.PagePlus">
+            <property name="dialect" value="mysql"/>
+            <property name="pageSqlId" value=".*ForPage.*"/>
+        </plugin>
+    </plugins>
+
+</configuration>

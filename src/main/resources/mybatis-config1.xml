@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--mybatis属性配置-->
+    <settings>
+        <!--全局性地开启或关闭所有映射器配置文件中已配置的任何缓存。-->
+        <setting name="cacheEnabled" value="true"/>
+        <!--延迟加载的全局开关。当开启时，所有关联对象都会延迟加载。-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--是否允许单个语句返回多结果集（需要数据库驱动支持）-->
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <!--使用列标签代替列名。实-->
+        <setting name="useColumnLabel" value="true"/>
+        <!--允许 JDBC 支持自动生成主键，需要数据库驱动支持。如果设置为 true，将强制使用自动生成主键。-->
+        <setting name="useGeneratedKeys" value="false"/>
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+        <setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+        <setting name="defaultStatementTimeout" value="25"/>
+        <setting name="defaultFetchSize" value="100"/>
+        <setting name="safeRowBoundsEnabled" value="false"/>
+        <!--是否开启驼峰命名自动映射-->
+        <setting name="mapUnderscoreToCamelCase" value="false"/>
+        <!--MyBatis 利用本地缓存机制（Local Cache）防止循环引用和加速重复的嵌套查询。 默认值为 SESSION，会缓存一个会话中执行的所有查询。
+        若设置值为 STATEMENT，本地缓存将仅用于执行语句，对相同 SqlSession 的不同查询将不会进行缓存。-->
+        <setting name="localCacheScope" value="SESSION"/>
+        <setting name="jdbcTypeForNull" value="OTHER"/>
+        <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+    </settings>
+    <!--对映射的类起别名-->
+    <typeAliases>
+
+    </typeAliases>
+
+    <plugins>
+        <plugin interceptor="com.dream.order.common.page.PagePlus">
+            <property name="dialect" value="mysql"/>
+            <property name="pageSqlId" value=".*ForPage.*"/>
+        </plugin>
+    </plugins>
+
+</configuration>
