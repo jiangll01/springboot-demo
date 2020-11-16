@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author jiangll01
@@ -88,5 +89,17 @@ public class RedisHelper {
     }
     public void getForZset(String key) {
         redisTemplate.opsForZSet().range(key,1,10);
+    }
+
+    public boolean isExistForValue(String key) {
+        return redisTemplate.hasKey(key);
+    }
+
+    public void setForValue(String key, Object value, long timeout, TimeUnit timeUnit) {
+        redisTemplate.opsForValue().set(key,value,timeout,timeUnit);
+    }
+
+    public void inCr(String key, long value) {
+        redisTemplate.opsForValue().increment(key,value);
     }
 }

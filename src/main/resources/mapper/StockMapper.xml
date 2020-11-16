@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.order.manage.miaosha.mapper.StockMapper">
+    <update id="updateSale">
+        update stock set
+            sale=sale+1,
+            version=version+1
+         where
+            id =#{id}
+            and
+            version = #{version}
+    </update>
+    <select id="checkStock" resultType="com.dream.order.manage.miaosha.entity.Stock">
+        SELECT id,name,count,sale,version
+        FROM
+        stock
+        WHERE
+        id = #{id}
+    </select>
+</mapper>

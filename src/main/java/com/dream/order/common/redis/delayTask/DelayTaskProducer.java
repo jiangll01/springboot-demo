@@ -1,4 +1,4 @@
-package com.dream.order.common.redis.DelayTask;
+package com.dream.order.common.redis.delayTask;
 
         import com.dream.order.common.redis.utis.RedisHelper;
         import org.springframework.beans.factory.annotation.Autowired;

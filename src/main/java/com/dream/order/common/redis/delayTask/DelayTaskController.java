@@ -1,4 +1,4 @@
-package com.dream.order.common.redis.DelayTask;
+package com.dream.order.common.redis.delayTask;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

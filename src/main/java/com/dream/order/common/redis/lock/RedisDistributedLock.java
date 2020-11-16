@@ -2,8 +2,11 @@ package com.dream.order.common.redis.lock;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Component;
 
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author jiangll01
@@ -18,21 +21,27 @@ import java.util.concurrent.TimeUnit;
  * 解决：可以通过导入Redis客户端Redisson
  * 可以通过时间判断来进行加时间？释放锁
  */
-
+@Component
 public class RedisDistributedLock {
 
     StringRedisTemplate stringRedisTemplate;
+    DelayQueueManager delayQueueManager;
+    //并发情况下，id实现自增
+    private AtomicInteger id ;
+    private String value;
 
     @Autowired
-    public RedisDistributedLock(StringRedisTemplate stringRedisTemplate) {
+    public RedisDistributedLock(StringRedisTemplate stringRedisTemplate, DelayQueueManager delayQueueManager) {
         this.stringRedisTemplate = stringRedisTemplate;
+        this.delayQueueManager = delayQueueManager;
     }
 
-    public RedisDistributedLock() {
-    }
 
     public boolean get(String lockKey, String value, long expireTime, TimeUnit timeUnit) {
-
+        //开启延时队列进行判断，如果代码执行的时间过长，要维护这把锁
+        this.value = UUID.randomUUID().toString();
+        Message message = new Message(this.id.getAndIncrement(),value ,expireTime / 2, timeUnit);
+        delayQueueManager.put(message);
         return Boolean.TRUE.equals(stringRedisTemplate.opsForValue().setIfAbsent(lockKey, value, expireTime, timeUnit));
     }
 

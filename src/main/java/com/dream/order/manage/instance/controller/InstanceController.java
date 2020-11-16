@@ -25,7 +25,8 @@ public class InstanceController {
     }
 
     @GetMapping("/instance/list")
-    public List<TimeBean> selectAll() {
-        return instanceService.selectAll();
+    public List<TimeBean> selectAll(int id) {
+        return instanceService.selectAll(id);
     }
+
 }

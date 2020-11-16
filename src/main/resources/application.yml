@@ -12,20 +12,22 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/a?useUnicode=true&characterEncoding=UTF8&allowMultiQueries=true&autoReconnect=true&useSSL=false
     username: root
     password: root
-  redis:
-    cluster:
-      nodes: 192.168.229.129:7000, 192.168.229.129:7001, 192.168.229.129:7002,
-        192.168.229.129:7003, 192.168.229.129:7004, 192.168.229.129:7005
+# 集群
+#  redis:
+#    cluster:
+#      nodes: 192.168.229.129:7000, 192.168.229.129:7001, 192.168.229.129:7002,
+#        192.168.229.129:7003, 192.168.229.129:7004, 192.168.229.129:7005
+# 哨兵
 #  redis:
 #    sentinel:
 #      master: mymaster  # 哨兵监控的名称
 #      nodes:
 #        - 192.168.229.129:26379
 #        - 192.168.229.129:26379 #哨兵的地址和端口号
-# 单节点下的redis配置
-#  redis:
-#    host: 192.168.229.129
-#    port: 6379
+ #单节点下的redis配置
+  redis:
+    host: 192.168.229.129
+    port: 6379
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
 #  configuration:
