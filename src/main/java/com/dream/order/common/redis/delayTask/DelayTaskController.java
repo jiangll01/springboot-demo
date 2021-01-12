@@ -26,13 +26,12 @@ public class DelayTaskController {
     DelayTaskProducer delayTaskProducer;
 
     @GetMapping("/test")
-    public void test(String name,int time) {
+    public void test(String name, int time) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
-        log.info("当前的时间{}",format.format(new Date()));
+        log.info("当前的时间{}", format.format(new Date()));
         long time1 = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(time);
-        log.info("将在未来的时间 {} 执行",format.format(new Date(time1)));
-        delayTaskProducer.putTask(name,time1);
-
+        log.info("将在未来的时间 {} 执行", format.format(new Date(time1)));
+        delayTaskProducer.putTask(name, time1);
 
 
     }
@@ -41,7 +40,7 @@ public class DelayTaskController {
         System.out.println(new Date());
         System.out.println(System.currentTimeMillis());
         System.out.println(new Date().getTime());
-        long l = System.currentTimeMillis()+TimeUnit.SECONDS.toMillis(5);
+        long l = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(5);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         System.out.println(simpleDateFormat.parse(format));

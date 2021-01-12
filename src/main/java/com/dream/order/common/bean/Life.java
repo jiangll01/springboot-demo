@@ -11,7 +11,6 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * @Description: 人生
  * 实现了BeanPostProcessor接口:Spring就将调用他们的postProcessBeforeInitialization()方法
  * 、postProcessAfterInitialization()方法。
- *
  */
 public class Life implements BeanPostProcessor, InitializingBean, DisposableBean {
     @Override
@@ -28,7 +27,6 @@ public class Life implements BeanPostProcessor, InitializingBean, DisposableBean
      * Bean 实现了InitializingBean接口
      * Spring将调用他们的afterPropertiesSet()方法。
      * 类似的，如果bean使用init-method声明了初始化方法，该方法也会被调用
-     *
      */
     @Override
     public void afterPropertiesSet() throws Exception {

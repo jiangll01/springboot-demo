@@ -12,34 +12,77 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/a?useUnicode=true&characterEncoding=UTF8&allowMultiQueries=true&autoReconnect=true&useSSL=false
     username: root
     password: root
-# 集群
-#  redis:
-#    cluster:
-#      nodes: 192.168.229.129:7000, 192.168.229.129:7001, 192.168.229.129:7002,
-#        192.168.229.129:7003, 192.168.229.129:7004, 192.168.229.129:7005
-# 哨兵
-#  redis:
-#    sentinel:
-#      master: mymaster  # 哨兵监控的名称
-#      nodes:
-#        - 192.168.229.129:26379
-#        - 192.168.229.129:26379 #哨兵的地址和端口号
- #单节点下的redis配置
+  # 集群
+  #  redis:
+  #    cluster:
+  #      nodes: 192.168.229.129:7000, 192.168.229.129:7001, 192.168.229.129:7002,
+  #        192.168.229.129:7003, 192.168.229.129:7004, 192.168.229.129:7005
+  # 哨兵
+  #  redis:
+  #    sentinel:
+  #      master: mymaster  # 哨兵监控的名称
+  #      nodes:
+  #        - 192.168.229.129:26379
+  #        - 192.168.229.129:26379 #哨兵的地址和端口号
+  #单节点下的redis配置
   redis:
     host: 192.168.229.129
     port: 6379
+  rabbitmq:
+    host: 192.168.229.129
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    ## 监听消息是否 到达 queue  退回模式
+    publisher-returns: true
+    # 监听消息是否 到达 exchange
+    publisher-confirm-type: none
+    template:
+      retry:
+        enabled: true # 针对网络原因导致连接断开，利用retryTemplate重连10次
+        max-attempts: 3 #重试时间
+    # 消费者ack有3种模式：NONE、AUTO、MANUAL
+    # NONE: 不管消费是否成功mq都会把消息剔除，这是默认配置方式。
+    # MANUAL：手动应答
+    # AUTO：自动应答，除非MessageListener抛出异常。
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
+
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
-#  configuration:
-#    map-underscore-to-camel-case: true #配置开启数据库驼峰匹配，也可以通过xml配置文件修改
-#    cache-enabled: true #是否开启缓存
-#    call-setters-on-nulls: true #指定当结果集中值为 null 的时候是否调用映射对象的 setter
+  #  configuration:
+  #    map-underscore-to-camel-case: true #配置开启数据库驼峰匹配，也可以通过xml配置文件修改
+  #    cache-enabled: true #是否开启缓存
+  #    call-setters-on-nulls: true #指定当结果集中值为 null 的时候是否调用映射对象的 setter
   config-location: classpath:mybatis-config.xml #指定配置文件
 # springboot默认采用的logback日志
 #可以通过配置文件进行覆盖定制自己的日志，或者通过yml进行一些属性修改
 #logging:
 #  level:
 #    root: info #指定了根目录的日志级别
-#    com.dream.order: debug # 指定了自己的包日志级别
+#    com.thread.order: debug # 指定了自己的包日志级别
 #  file: aa.log # 日志名字
 #  path: ./ #指定日志打印到的文件
+person:
+  name: zhangsan
+  age: 18
+  sex: 男
+  map:
+    classs: 5
+    love: liuyujiao
+  # 表示列表，可以给对象注入属性值
+  annimals:
+    - cat
+    - dog
+    - ping
+management:
+    endpoints:
+      web:
+        base-path: /actuator #配置端点访问前缀
+        exposure:
+          include: '*' #暴露所有端点
+

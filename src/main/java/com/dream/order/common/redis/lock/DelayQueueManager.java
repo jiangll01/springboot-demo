@@ -28,7 +28,6 @@ public class DelayQueueManager implements CommandLineRunner {
     String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('expire', KEYS[1],ARGV[2]) else return '0' end";
 
 
-
     /**
      * 加入到延时队列中
      *

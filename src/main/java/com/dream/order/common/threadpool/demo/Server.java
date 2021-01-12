@@ -12,6 +12,6 @@ public class Server implements Runnable {
     @Override
     public void run() {
         Thread.sleep(20);
-        System.out.println("打印线程"+Thread.currentThread().getName());
+        System.out.println("打印线程" + Thread.currentThread().getName());
     }
 }

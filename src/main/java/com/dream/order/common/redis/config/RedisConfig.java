@@ -14,13 +14,13 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @author jiangll01
  * @Date: 2020/10/19 11:11
- * @Description:  spring 默认提供的是resttemplate
+ * @Description: spring 默认提供的是resttemplate
  */
 @Configuration
 public class RedisConfig {
 
     @Bean
-    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory){
+    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
 
         //value为对象时，对象必须序列化，所以设置序列化

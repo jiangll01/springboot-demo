@@ -57,7 +57,7 @@ public class StockController {
      * @return 下单成功的订单
      */
     @GetMapping("/sale")
-    public String sale(Integer id,Integer userId,String md5) {
+    public String sale(Integer id, Integer userId, String md5) {
         if (!redisHelper.isExistForValue("kill" + id)) {
             log.info("秒杀超时,活动已经结束啦!!!");
             return "秒杀超时,活动已经结束啦!!!";
@@ -78,7 +78,7 @@ public class StockController {
         }
         //创建订单
         try {
-            return String.valueOf(orderService.createOrder(id,userId,md5));
+            return String.valueOf(orderService.createOrder(id, userId, md5));
         } catch (Exception e) {
             e.printStackTrace();
             return e.getMessage();
@@ -91,10 +91,19 @@ public class StockController {
         String md5;
         try {
             md5 = orderService.getMd5(id, userId);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            return "获取md5失败: "+e.getMessage();
+            return "获取md5失败: " + e.getMessage();
         }
-        return "获取md5信息为: "+md5;
+        return "获取md5信息为: " + md5;
+    }
+
+    @RequestMapping("/test")
+    public void test() {
+        try {
+            orderService.createOrder1();
+        } catch (Exception e) {
+            System.out.println("真的是异常");
+        }
     }
 }

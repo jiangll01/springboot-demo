@@ -17,10 +17,10 @@ public class Message implements Delayed {
     private String body; // 消息内容
     private long time;// 延迟时长，这个是必须的属性因为要按照这个判断延时时长。
 
-    public Message(int id, String body, long time,TimeUnit unit) {
+    public Message(int id, String body, long time, TimeUnit unit) {
         this.id = id;
         this.body = body;
-        this.time = System.currentTimeMillis() + (time > 0? unit.toMillis(time): 0);//执行的时间点
+        this.time = System.currentTimeMillis() + (time > 0 ? unit.toMillis(time) : 0);//执行的时间点
     }
 
     // 延迟任务是否到时就是按照这个方法判断如果返回的是负数则说明到期否则还没到期

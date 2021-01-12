@@ -26,6 +26,7 @@ public class Message implements Delayed {
         this.body = body;
         this.time = System.currentTimeMillis() + (time > 0 ? timeUnit.toMillis(time) : 0);
     }
+
     // 延迟任务是否到时就是按照这个方法判断如果返回的是负数则说明到期否则还没到期
     @Override
     public long getDelay(TimeUnit unit) {
@@ -39,7 +40,7 @@ public class Message implements Delayed {
         // 改成>=会造成问题
         if (this.time - msg.time <= 0) {
             return -1;
-        }else {
+        } else {
             return 1;
         }
     }

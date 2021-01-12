@@ -39,13 +39,14 @@ public class RedisCache implements Cache {
     //缓存放入值  redis RedisTemplate   StringRedisTemplate
     @Override
     public void putObject(Object key, Object value) {
-        redisHelper.setForHash(id,getKeyToMD5(key.toString()),value);
+        redisHelper.setForHash(id, getKeyToMD5(key.toString()), value);
     }
 
     @Override
     public Object getObject(Object key) {
-        return redisHelper.getForHash(id,getKeyToMD5(key.toString()));
+        return redisHelper.getForHash(id, getKeyToMD5(key.toString()));
     }
+
     //注意:这个方法为mybatis保留方法 默认没有实现 后续版本可能会实现
     @Override
     public Object removeObject(Object key) {
@@ -70,7 +71,7 @@ public class RedisCache implements Cache {
 
 
     //封装一个对key进行md5处理方法
-    private String getKeyToMD5(String key){
+    private String getKeyToMD5(String key) {
         return DigestUtils.md5DigestAsHex(key.getBytes());
     }
 }

@@ -1,7 +1,5 @@
 package com.dream.order.common.bean;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,12 +11,8 @@ import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +32,7 @@ public class Person implements BeanNameAware, BeanFactoryAware, ApplicationConte
     private String name;
     private String age;
     private String sex;
-    private Map<String,Object> map;
+    private Map<String, Object> map;
     private List<String> annimals;
 
     /**

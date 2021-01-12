@@ -15,7 +15,7 @@ public class Test2 {
     public static void main(String[] args) {
         ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("测试线程%d").build();
         ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, threadFactory);
-            Server server = new Server();
-            scheduledThreadPoolExecutor.scheduleWithFixedDelay(server,0L,1L,TimeUnit.SECONDS);
+        Server server = new Server();
+        scheduledThreadPoolExecutor.scheduleWithFixedDelay(server, 0L, 1L, TimeUnit.SECONDS);
     }
 }

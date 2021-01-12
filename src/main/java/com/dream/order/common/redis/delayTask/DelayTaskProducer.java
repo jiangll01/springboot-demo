@@ -1,8 +1,8 @@
 package com.dream.order.common.redis.delayTask;
 
-        import com.dream.order.common.redis.utis.RedisHelper;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.stereotype.Component;
+import com.dream.order.common.redis.utis.RedisHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author jiangll01

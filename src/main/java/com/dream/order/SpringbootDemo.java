@@ -2,7 +2,7 @@ package com.dream.order;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author jiangll01
@@ -10,8 +10,11 @@ import org.springframework.context.annotation.ComponentScan;
  * @Description:
  */
 @SpringBootApplication
+@EnableTransactionManagement
 public class SpringbootDemo {
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootDemo.class,args);
+        SpringApplication.run(SpringbootDemo.class, args);
+
     }
+
 }

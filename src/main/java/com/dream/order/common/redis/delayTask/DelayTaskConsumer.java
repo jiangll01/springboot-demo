@@ -23,27 +23,28 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 @Slf4j
-public class DelayTaskConsumer implements Runnable , BeanPostProcessor, ApplicationContextAware {
+public class DelayTaskConsumer implements Runnable, BeanPostProcessor, ApplicationContextAware {
     private final String DELAY_QUEUE = "queue";
-   @Autowired
+    @Autowired
     private RedisTemplate redisTemplate;
-   private ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
     public void run() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
         Set set;
         try {
-            set = redisTemplate.opsForZSet().rangeByScore(DELAY_QUEUE,0,System.currentTimeMillis(),0,1);
+            set = redisTemplate.opsForZSet().rangeByScore(DELAY_QUEUE, 0, System.currentTimeMillis(), 0, 1);
             if (set == null || set.isEmpty()) {
                 return;
             }
             for (Object id : set) {
                 Long count = redisTemplate.opsForZSet().remove(DELAY_QUEUE, (String) id);
                 if (count != null && count == 1) {
-                    log.info("延迟后进行了处理 {}",id);
+                    log.info("延迟后进行了处理 {}", id);
                 }
             }
-        }catch (Exception e){}finally {
+        } catch (Exception e) {
+        } finally {
 
         }
 
@@ -51,13 +52,13 @@ public class DelayTaskConsumer implements Runnable , BeanPostProcessor, Applicat
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        if ("delayTaskProducer".equals(beanName)){
+        if ("delayTaskProducer".equals(beanName)) {
             log.info("执行bean的后置处理器");
-            log.info("bean对象{}，bean的名字{}",bean,beanName);
+            log.info("bean对象{}，bean的名字{}", bean, beanName);
             ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("延时队列%d").build();
             ScheduledThreadPoolExecutor poolExecutor = new ScheduledThreadPoolExecutor(1, threadFactory);
-            DelayTaskConsumer consumer = (DelayTaskConsumer)getBean("delayTaskConsumer");
-            poolExecutor.scheduleWithFixedDelay(consumer,0L,1L,TimeUnit.SECONDS);
+            DelayTaskConsumer consumer = (DelayTaskConsumer) getBean("delayTaskConsumer");
+            poolExecutor.scheduleWithFixedDelay(consumer, 0L, 1L, TimeUnit.SECONDS);
         }
         return bean;
     }
@@ -67,8 +68,8 @@ public class DelayTaskConsumer implements Runnable , BeanPostProcessor, Applicat
         this.applicationContext = applicationContext;
     }
 
-    public Object getBean(String beanName){
-       return applicationContext.getBean(beanName);
+    public Object getBean(String beanName) {
+        return applicationContext.getBean(beanName);
     }
 }
 

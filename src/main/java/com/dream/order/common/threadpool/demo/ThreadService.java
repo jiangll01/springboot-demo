@@ -18,7 +18,7 @@ public class ThreadService {
     @Async
     public ListenableFuture<String> getMessage(String name) {
         Thread.sleep(5000);
-        String res = name+ ":Hello World!";
+        String res = name + ":Hello World!";
         return new AsyncResult<>(res);
     }
 }

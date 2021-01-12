@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 public interface StockMapper {
     Stock checkStock(@Param("id") Integer id);
 
-    int updateSale( Stock stock);
+    int updateSale(Stock stock);
 
 }

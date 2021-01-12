@@ -27,7 +27,7 @@ public class RedisDistributedLock {
     StringRedisTemplate stringRedisTemplate;
     DelayQueueManager delayQueueManager;
     //并发情况下，id实现自增
-    private AtomicInteger id ;
+    private AtomicInteger id;
     private String value;
 
     @Autowired
@@ -40,7 +40,7 @@ public class RedisDistributedLock {
     public boolean get(String lockKey, String value, long expireTime, TimeUnit timeUnit) {
         //开启延时队列进行判断，如果代码执行的时间过长，要维护这把锁
         this.value = UUID.randomUUID().toString();
-        Message message = new Message(this.id.getAndIncrement(),value ,expireTime / 2, timeUnit);
+        Message message = new Message(this.id.getAndIncrement(), value, expireTime / 2, timeUnit);
         delayQueueManager.put(message);
         return Boolean.TRUE.equals(stringRedisTemplate.opsForValue().setIfAbsent(lockKey, value, expireTime, timeUnit));
     }

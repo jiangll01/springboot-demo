@@ -17,9 +17,9 @@ public class DelayQueueTest {
         // 创建延时队列
         DelayQueue<Message> queue = new DelayQueue<Message>();
         // 添加延时消息,m1 延时3s
-        Message m1 = new Message(1, "world",15, TimeUnit.SECONDS);
+        Message m1 = new Message(1, "world", 15, TimeUnit.SECONDS);
         // 添加延时消息,m2 延时10s
-        Message m2 = new Message(2, "hello", 30,TimeUnit.SECONDS);
+        Message m2 = new Message(2, "hello", 30, TimeUnit.SECONDS);
         //将延时消息放到延时队列中
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println(format.format(new Date()));

@@ -37,7 +37,7 @@ public class StringRedisHelperTest {
 
     @Test
     public void setForValue() {
-        stringRedisHelper.setForValue("我先","hehhe");
+        stringRedisHelper.setForValue("我先", "hehhe");
     }
 
     @Test
@@ -51,8 +51,8 @@ public class StringRedisHelperTest {
     @Test
     public void multiGetForValue() {
         Map<String, String> map = new HashMap<>();
-        map.put("张三","山东菏泽人");
-        map.put("李四","山东菏泽人");
+        map.put("张三", "山东菏泽人");
+        map.put("李四", "山东菏泽人");
         stringRedisHelper.multiSetForValue(map);
     }
 

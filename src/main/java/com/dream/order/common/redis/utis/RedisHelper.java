@@ -21,10 +21,10 @@ public class RedisHelper {
     /**
      * 操作Object类型
      */
-    private RedisTemplate<String,Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
-    public RedisHelper(RedisTemplate<String,Object> redisTemplate) {
+    public RedisHelper(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
@@ -53,7 +53,7 @@ public class RedisHelper {
     }
 
     public Object getForHash(String key, String hashKey) {
-        return  redisTemplate.opsForHash().get(key, hashKey);
+        return redisTemplate.opsForHash().get(key, hashKey);
     }
 
     public Map<Object, Object> getAllForHash(String key) {
@@ -65,7 +65,7 @@ public class RedisHelper {
     }
 
     public Long hashSize(String key) {
-       return redisTemplate.opsForHash().size(key);
+        return redisTemplate.opsForHash().size(key);
     }
 
     public void setForSet(String key, Object... value) {
@@ -87,8 +87,9 @@ public class RedisHelper {
     public void setForZset(String key, Set<ZSetOperations.TypedTuple<Object>> value) {
         redisTemplate.opsForZSet().add(key, value);
     }
+
     public void getForZset(String key) {
-        redisTemplate.opsForZSet().range(key,1,10);
+        redisTemplate.opsForZSet().range(key, 1, 10);
     }
 
     public boolean isExistForValue(String key) {
@@ -96,10 +97,10 @@ public class RedisHelper {
     }
 
     public void setForValue(String key, Object value, long timeout, TimeUnit timeUnit) {
-        redisTemplate.opsForValue().set(key,value,timeout,timeUnit);
+        redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
     }
 
     public void inCr(String key, long value) {
-        redisTemplate.opsForValue().increment(key,value);
+        redisTemplate.opsForValue().increment(key, value);
     }
 }

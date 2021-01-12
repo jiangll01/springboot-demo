@@ -27,7 +27,7 @@ public class ThreadController {
     @SneakyThrows
     @GetMapping("/test")
 
-    public String test(){
+    public String test() {
         // 阻塞调用
         String yan = threadService.getMessage("yan").get();
         System.out.println(yan);

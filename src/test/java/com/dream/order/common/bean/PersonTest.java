@@ -1,4 +1,5 @@
 package com.dream.order.common.bean;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,14 @@ public class PersonTest {
     Person person;
     @Autowired
     ApplicationContext ioc;
+
     @Test
-    public void getPerson(){
+    public void getPerson() {
         System.out.println(person.toString());
     }
+
     @Test
-    public void getHelloService(){
+    public void getHelloService() {
         System.out.println(ioc.containsBean("helloService"));
     }
 }

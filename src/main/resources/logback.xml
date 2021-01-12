@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!--首先需要导入这个配置文件-->
-    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <!--追加，日志打印的位置和文件名-->
     <appender name="auditlog"
               class="ch.qos.logback.core.FileAppender">
